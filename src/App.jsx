@@ -1,48 +1,33 @@
-import styled from "styled-components"
 import GlobalStyles from "./styles/GlobalStyles";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import Heading from "./ui/Heading";
-import Row from "./ui/Row";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard"
+import Bookings from "./pages/Bookings"
+import Users from "./pages/Users"
+import Settings from "./pages/Settings"
+import Account from "./pages/Account"
+import Login from "./pages/Login"
+import PageNotFound from "./pages/PageNotFound"
 
-const StyledApp = styled.div`
-  padding:20px;
-`;
 
-function App() {
+const App = () => {
   return (
     <>
       <GlobalStyles />
-      <StyledApp>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Navigate replace to="dashboard" />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="users" element={<Users />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="account" element={<Account />} />
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
 
-        <Row>
-          <Row type="horizontal">
-            <Heading as='h1'>
-              Wild oasis
-            </Heading>
-            <div>
-              <Heading as='h2'>
-                Check in and out
-              </Heading>
-              <Button onClick={() => alert("check in ")}>Check in</Button>
-              <Button variation="danger" size="small" onClick={() => alert("check out ")}>Check out</Button>
-            </div>
-          </Row>
-
-
-          <Row>
-            <Heading as="h3">Form</Heading>
-            <form >
-              <Input type="number" placeholder="Number of guests" />
-              <Input type="number" placeholder="Number of guests" />
-            </form>
-          </Row>
-
-        </Row>
-
-      </StyledApp >
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

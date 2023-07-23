@@ -20,7 +20,7 @@ ${props => props.type === 'vertical' && css`
 
 
 Row.defaultProps = {
-    type: 'vertical'
+    stype: 'vertical'
 }
 
 export default Row;
